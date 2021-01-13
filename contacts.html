@@ -1,0 +1,187 @@
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KHDHLVW');</script>
+<!-- End Google Tag Manager -->
+<title>KetoBalanced.Com - Contacts</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="https://cdn.ketobalanced.com/aus/images/favicon.png" sizes="32x32" />
+<link rel="stylesheet" href="css/bootstrap.min.css"> 
+<link href="css/main-style.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>.navbar-brand>img{padding-top:4px;}</style>
+</head>
+
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHDHLVW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+   <nav class="mnfrntNav navbar" style="display:block;">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+               <img src="https://cdn.ketobalanced.com/aus/images/logo.png" alt="ketobalanced.com" class="brand-logo">
+            </a>
+        </div>
+    </nav>
+    <div class="hdr_bar" style="display:block;">
+        <div class="prgrs-bar">
+            <div class="prgrs" style="width:100%;"></div>
+        </div>
+    </div>
+    <div class="container">
+	<h2 class="text-center">Contact us</h2>
+	<br><div class="">
+	<div class="col-md-7">
+        <div class="col-md-6 col-xs-12">
+         <div style="padding:10px 15px; line-height: 26px;">
+                       
+                       <strong style="font-size:16px;"> Company</strong>
+                        <br /> LA Infotech
+                        <br />
+						
+						<strong style="font-size:16px;"> Company Id</strong>
+                        <br />10259100963
+                        <br />
+						
+						<strong style="font-size:16px;"> Address of registration</strong>
+                        <br />Via del Bossi 2/A, 20121 - Milan, Italy
+                        <br />
+						
+						
+						
+		</div>
+		
+        </div>
+		<div class="col-md-6 col-xs-12">
+         <div style="padding:10px 15px; line-height: 26px;">
+                       
+                       <strong style="font-size:16px;"> Address</strong>
+                        <br />Via del Bossi 2/A, 20121 - Milan, Italy
+                        <br />
+						
+						<strong style="font-size:16px;"> Email</strong>
+						
+                        <br />support@ketobalanced.com
+                  	
+		</div>
+		
+        </div>
+		<div class="clearfix"></div>
+	
+		
+		</div>
+		
+		<div class="col-md-5 col-xs-12">
+		<form id="user_contact_form">
+			<div class="form-group">
+			<div id="contact_error" style="font-weight:bold;"></div>
+			</div>
+		
+			<div class="form-group">
+			<label for="pwd">Name:</label>
+			<input type="text" class="form-control" name="user_name" id="user_name">
+			</div>
+			<div class="form-group">
+			<label for="email">Email address:</label>
+			<input type="email" class="form-control" name="user_email" id="user_email">
+			</div>
+			<div class="form-group">
+			<label for="comment">Comment:</label>
+			<textarea class="form-control" rows="5" name="user_comment" id="user_comment"></textarea>
+			</div>
+		  
+			<button type="submit" name="submit" id="submit" class="btn btn-default">Submit</button>
+		</form>
+	</div>
+		
+			
+		<div class="clearfix"></div>
+	</div>	
+    </div>
+	
+	
+<script>
+$(document).ready(function(){
+		jQuery('#user_contact_form').submit(function(event){
+				event.preventDefault();
+				
+				var errshow=jQuery(this).find('#contact_error');
+				
+				var user_name = jQuery(this).find("#user_name").val().trim();
+				var user_email = jQuery(this).find("#user_email").val().trim();
+				var user_comment_len = jQuery(this).find("#user_comment").val().trim().length;
+				var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+				
+				
+				if(user_name==''){
+					errshow.html('<div class="alert alert-danger">Name required !</div>');
+					return false;
+					
+				}else if(user_email==''){
+					errshow.html('<div class="alert alert-danger">Email required !</div>');
+					return false;
+					
+				}else if(reg.test(user_email) == false){	
+					errshow.html('<div class="alert alert-danger">Valid email required !</div>');
+					return false;
+					
+				}else{
+					errshow.html('<div class="alert alert-warning">Please Wait... !</div>');
+				
+				var formData = $(this).serialize();
+				//alert(formData);
+				
+				$.ajax({
+						dataType: "json",
+						url: 'contact-process.php',
+						type: 'POST',
+						data: formData,
+						success: function(output){
+						
+								errshow.html(output.message);
+								
+								if(output.status == 1){
+									
+									$('#loginForm').trigger('reset');	
+
+									 setTimeout(function(){
+										 location.href = window.location.href;
+										}, 30000);
+									
+								}
+							
+									
+						},
+							error: function (request, status, error) {
+							console.log(error.responseText);
+						}
+					});
+				}	
+					
+					
+					
+			});
+	
+});
+</script>
+<style>
+
+.bg-white {
+    background-color: #fff;
+    padding: 3px;
+    text-align: center;
+    border: 2px solid #3c763d;
+}
+</style>
+
+<script>var clicky_site_ids = clicky_site_ids || []; clicky_site_ids.push(101242162);</script>
+<script async src="https://static.getclicky.com/js"></script>
+
+</body>
+</html>
